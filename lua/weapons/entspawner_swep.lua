@@ -16,20 +16,7 @@ SWEP.Primary.Automatic = false
 local ShootSound = Sound( "Metal.SawbladeStick" )
 local delay = 
 local lastOccurance = -delay 
-
-
-local spawnableEnts = {
-    ["ent_ent"] = {
-        delay = 200, -- amounts of seconds in delay
-        currentDelay = 0,
-    }, 
-
-    ["ent2_ent2"] = {
-        delay = 200, -- amounts of seconds in delay
-        currentDelay = 0,
-    }, 
-}
-
+SWEP.ActiveEnt = ESS.CONFIG.SpawnableEnts[1]
 
 function SWEP:PrimaryAttack()
     entToSpawn = SWEP:GetActiveEnt()
@@ -65,7 +52,7 @@ function SWEP:SpawnEnt(ent)
 end
 
 function SWEP:SecondaryAttack()
-    
+	OpenEntMenu()
 
 end
 
@@ -74,17 +61,14 @@ function SWEP:GetActiveEnt()
 
 end
 
-local function OpenEntMenu(swep)
+local function OpenEntMenu()
     local scrw,scrh = ScrW(), ScrH()
     local isOpen = true
-	local Frame = vgui.Create( "DFrame" )
-	Frame:SetTitle( "Wong's Weapon Stripper" )
-	Frame:SetSize( 700,500)
+	local Frame = vgui.Create( "ESS.Frame" )
+	Frame:SetTitle( "Entity Spawner" )
+	Frame:SetSize( ESS.Scale(200),ESS.Scale(300))
 	Frame:Center()
 	Frame:MakePopup()
-	Frame.Paint = function(self, w, h)
-		draw.RoundedBox( 8, 0, 0, w, h, Color(x,x,x,x) )
-	end
 	
 	local List_Weapons = vgui.Create("DListView", Frame)
 	local oldAddColumn = List_Weapons.AddColumn
@@ -100,14 +84,14 @@ local function OpenEntMenu(swep)
 	end
 
 	List_Weapons:Dock( TOP )
-	List_Weapons:SetSize(0, 380)
+	List_Weapons:SetSize(0, 300)
 	List_Weapons:SetMultiSelect( false )
 	List_Weapons:AddColumn( "Weapon" )
 	List_Weapons:AddColumn( "Class" )
 	List_Weapons:AddColumn("Primary Ammo")
 	List_Weapons:AddColumn("Secondary Ammo")
 
-	for k, v in pairs(spawnableEnts) do
+	for k, v in pairs(ESS.SpawnableEnts) do
 		List_Weapons:AddLine(k,v[1],v[2])
 	end
 
