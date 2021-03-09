@@ -15,8 +15,8 @@ SWEP.WorldModel = "models/weapons/w_pist_glock18.mdl"
 SWEP.Primary.Automatic = false
 SWEP.Secondary.Automatic = false
 local ShootSound = Sound( "Metal.SawbladeStick" )
-local delay = 5
-
+local delay = 4
+local lastOccurance = 0
 
 
 function SWEP:PrimaryAttack()

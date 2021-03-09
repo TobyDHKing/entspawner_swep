@@ -2,8 +2,6 @@ local PANEL = {}
 
 ESS.CreateFont("Navbar.Lbl",ESS.Scale(20))
 
-AccessorFunc(PANEL, "m_body", "Body")
-
 function PANEL:Init()
     self.ents = {}
 end
@@ -12,7 +10,6 @@ function PANEL:AddTab(key, tbl)
     local i = table.Count(self.ents) + 1
     self.ents[i] = self:Add("DLabel")
     local Lbl = self.ents[i]
-    --local currentDelay = 
     Lbl:Dock(TOP)
     Lbl:DockMargin(ESS.Scale(5),ESS.Scale(5), 0, 0)
     Lbl:SetText(key)
@@ -22,20 +19,20 @@ function PANEL:AddTab(key, tbl)
     Lbl.Paint = nil
     Lbl:SizeToContentsY(ESS.Scale(10))
     Lbl:SetTextColor(ESS.CONFIG.Theme.amTextNavbarBtn)
+    Lbl.DoClick = function(self)
+        print(2)
+        self:SetActive(self.id)
+    end
     Lbl.timeleft = Lbl:Add("DLabel")
     Lbl.timeleft:Dock(RIGHT)
-    Lbl.timeleft:DockMargin(ESS.Scale(5),ESS.Scale(5), 0, 0)
+    Lbl.timeleft:DockMargin(0,ESS.Scale(5), 0, 0)
     Lbl.timeleft:SetText(tbl.currentDelay)
     Lbl.timeleft:SetFont("ESS.Navbar.Lbl")
     Lbl.timeleft:SetContentAlignment(4)
     Lbl.timeleft.Paint = nil
     Lbl.timeleft:SizeToContentsY(ESS.Scale(10))
     Lbl.timeleft:SetTextColor(ESS.CONFIG.Theme.amTextNavbarBtn)
-
-    function Lbl:OnDepressed(self)
-        print(2)
-        self:SetActive(self.id)
-    end
+   
 end
 
 function PANEL:SetActive(id)
@@ -51,8 +48,7 @@ function PANEL:SetActive(id)
     end
 
     self.active = id
-
-
+    
     Lbl:SetTextColor(ESS.CONFIG.Theme.amTextNavbarBtnActive)
     Lbl.timeleft:SetTextColor(ESS.CONFIG.Theme.amTextNavbarBtnActive)
     Lbl.Paint = function(pnl,w,h)
@@ -61,12 +57,8 @@ function PANEL:SetActive(id)
     end
 end
 
-function PANEL:PerformLayout(w, h)
-
-end
-
 function PANEL:Paint(w, h)   
-    draw.RoundedBoxEx(10,0, 0, w, h, ESS.CONFIG.Theme.amPrimary,false,false,true,true)
+    draw.RoundedBoxEx(8 ,0, 0, w, h, ESS.CONFIG.Theme.amSecondary,false,false,true,true)
     surface.SetDrawColor(ESS.CONFIG.Theme.amSecondaryLine)
     surface.DrawRect(0, 0, w,ESS.Scale(1) )
 end

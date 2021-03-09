@@ -2,7 +2,7 @@ ESS.CONFIG = ESS.CONFIG or {}
 
 ESS.CONFIG.Theme = {
     amBackground = Color( 30, 30, 30, 250 ),
-    amPrimary = Color( 43, 43, 43, 255),
+    amPrimary = Color( 42, 42, 42),
     amSecondary = Color( 46, 46, 46, 255),
     amSecondaryLine = Color( 60, 60, 60, 255),
     amNavbarBtnActive = Color( 45, 100, 235, 255),
