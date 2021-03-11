@@ -15,6 +15,7 @@ ESS.CONFIG.SpawnableEnts = {
     ["sent_ball"] = {
         jobs = {
             ["TEAM_GUN"] = true,
+            ["TEAM_CITIZEN"] = true,
         },
         name = "Health Ball",
         delay = 10, -- amounts of seconds in delay
