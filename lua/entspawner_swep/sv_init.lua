@@ -14,7 +14,7 @@ util.AddNetworkString("ESS.SendCacheDelays")
 net.Receive("ESS.SpawnEnt",function( _ , ply)
     entString = net.ReadString()
     if not IsValid(ply) then return end
-    if not v.jobs[team.GetClass(ply:Team())] then return end
+    if not ESS.CONFIG.SpawnableEnts[entString].jobs[team.GetName( ply:Team())] then return end
     if not istable(ESS.CONFIG.SpawnableEnts[entString]) then return end
     if timer.Exists("ESS.".. ply:SteamID().. entString) then 
         ply:PrintMessage( HUD_PRINTTALK, "This Entity is on timeout" )

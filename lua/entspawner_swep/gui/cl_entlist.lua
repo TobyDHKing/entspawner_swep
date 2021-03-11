@@ -11,7 +11,7 @@ end
 
 function PANEL:AddTab(key, tbl)
     local i = table.Count(self.ents) + 1
-
+    
     self.ents[i] = self.scroll:Add("DLabel")
     local Lbl = self.ents[i]
     Lbl.id = i

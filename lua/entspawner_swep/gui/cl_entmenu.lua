@@ -5,8 +5,9 @@ function PANEL:Init()
     self.EntList = self:Add("ESS.EntList")
     self.EntList:Dock(TOP)    
 	for k, v in pairs(ESS.CONFIG.SpawnableEnts) do
-		if not v.jobs[team.GetClass(ply:Team())] then return end
-		self.EntList:AddTab(k,v)
+		if v.jobs[team.GetName( ply:Team())] then 
+			self.EntList:AddTab(k,v)
+		end
 	end
 	self.EntList:SetActive(1)
     self.EntList:InvalidateLayout()
