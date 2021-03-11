@@ -1,9 +1,11 @@
 local PANEL = {}
 
 function PANEL:Init()
+	ply = LocalPlayer()
     self.EntList = self:Add("ESS.EntList")
     self.EntList:Dock(TOP)    
 	for k, v in pairs(ESS.CONFIG.SpawnableEnts) do
+		if not v.jobs[team.GetClass(ply:Team())] then return end
 		self.EntList:AddTab(k,v)
 	end
 	self.EntList:SetActive(1)
