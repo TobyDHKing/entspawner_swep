@@ -1,17 +1,27 @@
-function ESS.openEntMenu()
-    
-	ESS.Frame = vgui.Create( "ESS.Frame" )
-	ESS.Frame:SetTitle( "Entity Spawner" )
+local PANEL = {}
+
+function PANEL:Init()
+    self.EntList = self:Add("ESS.EntList")
+    self.EntList:Dock(TOP)    
+	for k, v in pairs(ESS.CONFIG.SpawnableEnts) do
+		self.EntList:AddTab(k,v)
+	end
+	self.EntList:SetActive(1)
+    self.EntList:InvalidateLayout()
+end
+
+function PANEL:PerformLayout(w, h)
+    self.BaseClass.PerformLayout(self, w ,h)
+	self.EntList:SetTall(ESS.Scale(400))
+end
+
+vgui.Register("ESS.EntsMenu",PANEL,"ESS.Frame")
+
+
+function ESS.openEntMenu()    
+	ESS.Frame = vgui.Create( "ESS.EntsMenu" )
 	ESS.Frame:SetSize( ESS.Scale(300),ESS.Scale(400))
 	ESS.Frame:Center()
 	ESS.Frame:MakePopup()
-	
-	local List_Ents = vgui.Create("ESS.EntList", ESS.Frame)
-	List_Ents:Dock( TOP )
-	List_Ents:SetSize(0, ESS.Scale(400))
-	for k, v in pairs(ESS.CONFIG.SpawnableEnts) do
-        print(k , v)
-		List_Ents:AddTab(k,v)
-	end
-    List_Ents:SetActive(1)
+	ESS.Frame:SetTitle( "Entity Spawner" )
 end

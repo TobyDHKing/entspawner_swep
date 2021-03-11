@@ -15,25 +15,25 @@ SWEP.WorldModel = "models/weapons/w_pist_glock18.mdl"
 SWEP.Primary.Automatic = false
 SWEP.Secondary.Automatic = false
 local ShootSound = Sound( "Metal.SawbladeStick" )
-local delay = 4
+local primaryDelay = 4
+local secondaryDelay = 3
 local lastOccurance = 0
-
+local primaryLastOccurance = 0
+local secondaryLastOccurance = 0
 
 function SWEP:PrimaryAttack()
-	if self.ActiveEnt == nil then return end
-	local timeElapsed = CurTime() - lastOccurance
-	if timeElapsed < delay then 
+	if ESS.ActiveEnt == nil then return end
+	local timeElapsed = CurTime() - primaryLastOccurance
+	if timeElapsed < primaryDelay then 
 		print( "The SWEP is on cooldown and has not been triggered" ) 
 	else
 
-		self.lastOccurance = CurTime()
-		self:SpawnEnt(self.ActiveEnt)
+		primaryLastOccurance = CurTime()
+		self:SpawnEnt(ESS.ActiveEnt)
 	end
-
 end
 
 function SWEP:SpawnEnt(ent) 
-
 	self:EmitSound( ShootSound )
 	net.Start("ESS.SpawnEnt")
 	net.WriteString(ent)
@@ -42,11 +42,12 @@ end
 
 function SWEP:SecondaryAttack()
 	if SERVER then return end
-	local timeElapsed = CurTime() - lastOccurance
-	if timeElapsed < delay then 
+	if IsValid(ESS.Frame) then return end
+	local timeElapsed = CurTime() - secondaryLastOccurance
+	if timeElapsed < secondaryDelay then 
 		print( "The SWEP is on cooldown and has not been triggered" ) 
 	else
-		lastOccurance = CurTime()
+		secondaryLastOccurance = CurTime()
 		net.Start("ESS.CacheDelays")
 		net.SendToServer()
 		ESS.openEntMenu()

@@ -7,7 +7,7 @@ function PANEL:Init()
     self.header = self:Add("Panel")
     self.header:Dock(TOP)
     self.header.Paint = function(pnl,w,h)
-        draw.RoundedBoxEx(10, 0, 0, w, h, ESS.CONFIG.Theme.amPrimary, true, true, false, false )
+        draw.RoundedBoxEx(10, 0, 0, w, h, ESS.CONFIG.Theme.primary, true, true, false, false )
     end
     self.header.closeBtn = self.header:Add("DButton")
     self.header.closeBtn:Dock(RIGHT)
@@ -21,7 +21,7 @@ function PANEL:Init()
     self.header.title = self.header:Add("DLabel")
     self.header.title:Dock(LEFT)
     self.header.title:SetFont("ESS.Header")
-    self.header.title:SetTextColor(ESS.CONFIG.Theme.amTextHead)
+    self.header.title:SetTextColor(ESS.CONFIG.Theme.entTextHead)
     self.header.title:SetTextInset(ESS.Scale(10),0)
     
 end
@@ -37,7 +37,7 @@ function PANEL:PerformLayout(w, h)
 end
 
 function PANEL:Paint(w, h)
-    draw.RoundedBox(10,0,0,w,h,ESS.CONFIG.Theme.amBackground,true,true,true,true)
+    draw.RoundedBox(10,0,0,w,h,ESS.CONFIG.Theme.background,true,true,true,true)
 end
 
 vgui.Register("ESS.Frame",PANEL,"EditablePanel")
