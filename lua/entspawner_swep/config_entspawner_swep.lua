@@ -13,18 +13,18 @@ ESS.CONFIG.Theme = {
 
 ESS.CONFIG.SpawnableEnts = {
     ["sent_ball"] = {
-        jobs = {
-            ["Gun Dealer"] = true,
-            ["Citizen"] = true,
-        },
         name = "Health Ball",
         delay = 10, -- amounts of seconds in delay
         currentDelay = 0, -- leave this at 0
+        jobs = {
+            ["Gun Dealer"] = true, -- make sure to use the print name
+            ["Citizen"] = true,
+        },
     }, 
 
     ["gred_emp_3inchmortar"] = {
         name = "EMP 2A65",
-        delay = 10, -- amounts of seconds in delay
+        delay = 10,
         currentDelay = 0,
         jobs = {
             ["Gun Dealer"] = true,
@@ -33,8 +33,8 @@ ESS.CONFIG.SpawnableEnts = {
     
     ["gb_bomb_sc1000"] = {
         name = "EMP 2A65",
-        delay = 10, -- amounts of seconds in delay
-        currentDelay = 0, -- leave this at 0
+        delay = 10,
+        currentDelay = 0,
         jobs = {
             ["Gun Dealer"] = true,
             ["Citizen"] = true,
